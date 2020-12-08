@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Snippet, LANGUAGE_CHOICES, STYLE_CHOICES
+from .models import Snippet, LANGUAGE_CHOICES, STYLE_CHOICES, Team, PlayerTeam
 from django.contrib.auth.models import User
 
 
@@ -19,3 +19,15 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = ['url', 'id', 'username', 'snippets']
+
+
+class TeamSerialize(serializers.ModelSerializer):
+    class Meta:
+        model = Team
+        fields = ['team_id', 'name', 'color']
+
+
+class PlayerTeamSerialize(serializers.ModelSerializer):
+    class Meta:
+        model = PlayerTeam
+        fields = ['player_id', 'first', 'last', 'percentage', 'teamName', 'color']

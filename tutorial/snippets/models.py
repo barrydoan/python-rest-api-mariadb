@@ -42,6 +42,28 @@ class Snippet(models.Model):
         ordering = ['created']
 
 
+class Team(models.Model):
+    team_id = models.CharField(db_column='team_ID', primary_key=True, max_length=10)  # Field name made lowercase.
+    name = models.CharField(max_length=20)
+    color = models.CharField(max_length=10)
+
+    class Meta:
+        managed = False
+        db_table = 'Team'
+
+
+class PlayerTeam(models.Model):
+    player_id = models.CharField(db_column='player_ID', primary_key=True, max_length=10)  # Field name made lowercase.
+    first = models.CharField(max_length=20)
+    last = models.CharField(max_length=20)
+    percentage = models.FloatField()
+    teamName = models.CharField(max_length=20)
+    color = models.CharField(max_length=10)
+
+    class Meta:
+        managed = False
+        db_table = 'playerTeam'
+
 
 
 

@@ -1,5 +1,5 @@
-from .models import Snippet
-from .serializers import SnippetSerializer
+from .models import Snippet, Team, PlayerTeam
+from .serializers import SnippetSerializer, TeamSerialize, PlayerTeamSerialize
 from rest_framework import generics
 from django.contrib.auth.models import User
 from .serializers import UserSerializer
@@ -60,3 +60,13 @@ class SnippetHighlight(generics.GenericAPIView):
     def get(self, request, *args, **kwargs):
         snippet = self.get_object()
         return Response(snippet.highlighted)
+
+
+class TeamViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Team.objects.all()
+    serializer_class = TeamSerialize
+
+
+class PlayerTeamViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = PlayerTeam.objects.all()
+    serializer_class = PlayerTeamSerialize
